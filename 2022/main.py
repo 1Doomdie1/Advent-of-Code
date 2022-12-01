@@ -14,30 +14,25 @@ def part_one():
         else:
             calories.append(temp)
             temp = 0
-    return max(calories)
+    return calories
 
 
 def part_two():
-    calories = []
-    temp = 0
-    for calory in get_input("data.txt"):
-        if calory != '':
-            temp += int(calory)
-        else:
-            calories.append(temp)
-            temp = 0
+    calories = part_one()
     top_three = []
-
     for _ in range(3):
         max_calories = max(calories)
         top_three.append(max_calories)
         calories.pop(calories.index(max_calories))
-    return sum(top_three)
+    return top_three
 
 
 def main():
-    print(part_one())
-    print(part_two())
+    max_calory = max(part_one())
+    top_3_calory_sum = sum(part_two())
+
+    print(max_calory)
+    print(top_3_calory_sum)
 
 
 if __name__ == '__main__':
