@@ -14,18 +14,12 @@ def part_one():
             "C": {"Y": {"Points": 0, "Choice Points": 2},
                   "X": {"Points": 6, "Choice Points": 1},
                   "Z": {"Points": 3, "Choice Points": 3}}}
-
-    matches = [i.split(' ') for i in get_input()]
-    total_score = 0
-    for match in matches:
-        total_score += game[match[0]][match[1]]["Points"] + game[match[0]][match[1]]["Choice Points"]
-    print(total_score)
+    return game
 
 
 def part_two():
     gameState = {"Lose": 0, "Draw": 3, "Win": 6}
     gameChoicePoints = {"A": 1, "B": 2, "C": 3}
-
     game = {"A": {"Y": {"Points": gameState["Draw"], "Choice Points": gameChoicePoints["A"]},
                   "X": {"Points": gameState["Lose"], "Choice Points": gameChoicePoints["C"]},
                   "Z": {"Points": gameState["Win"], "Choice Points": gameChoicePoints["B"]}},
@@ -35,17 +29,17 @@ def part_two():
             "C": {"Y": {"Points": gameState["Draw"], "Choice Points": gameChoicePoints["C"]},
                   "X": {"Points": gameState["Lose"], "Choice Points": gameChoicePoints["B"]},
                   "Z": {"Points": gameState["Win"], "Choice Points": gameChoicePoints["A"]}}}
-
-    matches = [i.split(' ') for i in get_input()]
-    total_score = 0
-    for match in matches:
-        total_score += game[match[0]][match[1]]["Points"] + game[match[0]][match[1]]["Choice Points"]
-    print(total_score)
+    return game
 
 
 def main():
-    part_one()
-    part_two()
+    game_rules = part_one(), part_two()
+    matches = [i.split(' ') for i in get_input()]
+    for game in game_rules:
+        total_score = 0
+        for match in matches:
+            total_score += game[match[0]][match[1]]["Points"] + game[match[0]][match[1]]["Choice Points"]
+        print(total_score)
 
 
 if __name__ == '__main__':
