@@ -4,22 +4,20 @@ def get_input():
     return data
 
 
-def part_one():
-    game = {"A": {"Y": {"Points": 6, "Choice Points": 2},
-                  "X": {"Points": 3, "Choice Points": 1},
-                  "Z": {"Points": 0, "Choice Points": 3}},
-            "B": {"Y": {"Points": 3, "Choice Points": 2},
-                  "X": {"Points": 0, "Choice Points": 1},
-                  "Z": {"Points": 6, "Choice Points": 3}},
-            "C": {"Y": {"Points": 0, "Choice Points": 2},
-                  "X": {"Points": 6, "Choice Points": 1},
-                  "Z": {"Points": 3, "Choice Points": 3}}}
+def part_one(gameState, gameChoicePoints):
+    game = {"A": {"Y": {"Points": gameState["Win"], "Choice Points": gameChoicePoints["B"]},
+                  "X": {"Points": gameState["Draw"], "Choice Points": gameChoicePoints["A"]},
+                  "Z": {"Points": gameState["Lose"], "Choice Points": gameChoicePoints["C"]}},
+            "B": {"Y": {"Points": gameState["Draw"], "Choice Points": gameChoicePoints["B"]},
+                  "X": {"Points": gameState["Lose"], "Choice Points": gameChoicePoints["A"]},
+                  "Z": {"Points": gameState["Win"], "Choice Points": gameChoicePoints["C"]}},
+            "C": {"Y": {"Points": gameState["Lose"], "Choice Points": gameChoicePoints["B"]},
+                  "X": {"Points": gameState["Win"], "Choice Points": gameChoicePoints["A"]},
+                  "Z": {"Points": gameState["Draw"], "Choice Points": gameChoicePoints["C"]}}}
     return game
 
 
-def part_two():
-    gameState = {"Lose": 0, "Draw": 3, "Win": 6}
-    gameChoicePoints = {"A": 1, "B": 2, "C": 3}
+def part_two(gameState, gameChoicePoints):
     game = {"A": {"Y": {"Points": gameState["Draw"], "Choice Points": gameChoicePoints["A"]},
                   "X": {"Points": gameState["Lose"], "Choice Points": gameChoicePoints["C"]},
                   "Z": {"Points": gameState["Win"], "Choice Points": gameChoicePoints["B"]}},
@@ -33,8 +31,12 @@ def part_two():
 
 
 def main():
-    game_rules = part_one(), part_two()
+    gameState = {"Lose": 0, "Draw": 3, "Win": 6}
+    gameChoicePoints = {"A": 1, "B": 2, "C": 3}
+
+    game_rules = part_one(gameState, gameChoicePoints), part_two(gameState, gameChoicePoints)
     matches = [i.split(' ') for i in get_input()]
+
     for game in game_rules:
         total_score = 0
         for match in matches:
