@@ -36,8 +36,8 @@ def part_two():
     hashMap = LettersHashMap()
     groupedPacks = (packs[i:i + 3] for i in range(0, len(packs), 3))
     totalSum = 0
-    for i in groupedPacks:
-        commonItem = ''.join(set(i[0]) & set(i[1]) & set(i[2]))
+    for group in groupedPacks:
+        commonItem = ''.join(set(group[0]) & set(group[1]) & set(group[2]))
         totalSum += hashMap[commonItem]
     return totalSum
 
