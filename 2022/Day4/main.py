@@ -1,7 +1,7 @@
 def get_input():
     with open('data.txt', 'r') as file:
         data = file.read().split('\n')
-    return data
+    return parse_data(data)
 
 
 def parse_data(data):
@@ -10,8 +10,7 @@ def parse_data(data):
     return temp
 
 
-def part_one():
-    pairs = parse_data(get_input())
+def part_one(pairs):
     overlaping_assigments = 0
     for pair in pairs:
         if (pair[0] <= pair[2] and pair[1] >= pair[3]) or (pair[0] >= pair[2] and pair[1] <= pair[3]):
@@ -19,8 +18,7 @@ def part_one():
     return overlaping_assigments 
 
 
-def part_two():
-    pairs = parse_data(get_input())
+def part_two(pairs):
     overlaping_assigments = 0
     for pair in pairs:
         set1 = {i for i in range(pair[0], pair[1] + 1)}
@@ -31,8 +29,9 @@ def part_two():
 
 
 def main():
-    x1 = part_one()
-    x2 = part_two()
+    pairs = get_input()
+    x1 = part_one(pairs)
+    x2 = part_two(pairs)
     print(x1)
     print(x2)
 
