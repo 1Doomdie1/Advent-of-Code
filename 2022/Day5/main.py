@@ -22,7 +22,7 @@ def getMoves():
     return moves
 
 
-def lastCratesOnStack(stacks):
+def lastCrateOnStacks(stacks):
     creates = [stacks[str(crate)][-1] for crate in range(1, len(stacks) + 1)]
     return ''.join(creates)
 
@@ -35,7 +35,7 @@ def part_one():
         amount = move["amount"]
         stacks[move['to']] += moveFrom[-amount:][::-1]
         del stacks[move["from"]][-amount:]
-    return lastCratesOnStack(stacks)
+    return lastCrateOnStacks(stacks)
 
 
 def part_two():
@@ -46,7 +46,7 @@ def part_two():
         amount = move["amount"]
         stacks[move['to']] += moveFrom[-amount:]
         del stacks[move["from"]][-amount:]
-    return lastCratesOnStack(stacks)
+    return lastCrateOnStacks(stacks)
 
 
 def main():
