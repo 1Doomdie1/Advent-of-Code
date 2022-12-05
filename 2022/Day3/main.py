@@ -8,14 +8,7 @@ def get_input():
 
 
 def LettersHashMap():
-    '''
-    a -> z [1....26]
-    A -> Z [26...52]
-    '''
-    temp = {}
-    for index, value in enumerate(ascii_letters, 1):
-        temp[value] = index
-    return temp
+    return {value: index for index, value in enumerate(ascii_letters, 1)}
 
 
 def part_one():
