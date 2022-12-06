@@ -10,7 +10,7 @@ def part_one():
         window = i + 4
         unique_letters = len(set(datastream[i:window]))
         if len(datastream[i:window]) == 4 and unique_letters == 4:
-            return len(datastream[:window])
+            return window
 
 
 def part_two():
@@ -19,7 +19,7 @@ def part_two():
         window = i + 14
         unique_letters = len(set(datastream[i:window]))
         if len(datastream[i:window]) == 14 and unique_letters == 14:
-            return len(datastream[:window])
+            return window
 
 
 def main():
