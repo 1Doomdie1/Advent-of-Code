@@ -2,7 +2,7 @@ def get_data():
     with open("data.txt", "r") as file:
         return file.read().split("\n")
 
-def day_one():
+def part_one():
     data = get_data()
     total = 0
     for line in data:
@@ -13,7 +13,7 @@ def day_one():
             total += int(f"{''.join(digits * 2)}")
     print(total)
 
-def day_two():
+def part_two():
     data = get_data()
     word_to_digit = {
         'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5',
@@ -31,5 +31,5 @@ def day_two():
     print(total)
 
 if __name__ == "__main__":
-    day_one()
-    day_two()
+    part_one()
+    part_two()
